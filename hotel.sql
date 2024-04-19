@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 16 avr. 2024 à 18:19
+-- Généré le : ven. 19 avr. 2024 à 16:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,46 +24,87 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reservation`
+-- Structure de la table `reservations`
 --
 
-CREATE TABLE `reservation` (
+CREATE TABLE `reservations` (
   `reservation_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL
+  `end_date` date NOT NULL,
+  `user_id` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reservations`
+--
+
+INSERT INTO `reservations` (`reservation_id`, `room_id`, `start_date`, `end_date`, `user_id`) VALUES
+(20, 1, '2024-04-19', '2024-04-20', 'HAJAR12');
+
+--
+-- Déclencheurs `reservations`
+--
+DELIMITER $$
+CREATE TRIGGER `update_room_availability` AFTER INSERT ON `reservations` FOR EACH ROW BEGIN
+    UPDATE rooms
+    SET available = FALSE
+    WHERE room_id = NEW.room_id;
+
+    IF NEW.end_date < NOW() THEN
+        UPDATE rooms
+        SET available = TRUE
+        WHERE room_id = NEW.room_id;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_room_availability_delete` AFTER DELETE ON `reservations` FOR EACH ROW BEGIN
+    UPDATE rooms
+    SET available = TRUE
+    WHERE room_id = OLD.room_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `room`
+-- Structure de la table `rooms`
 --
 
-CREATE TABLE `room` (
+CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL,
   `room_type` varchar(50) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `amenities` varchar(255) DEFAULT NULL,
-  `availability` tinyint(1) NOT NULL
+  `available` tinyint(1) NOT NULL DEFAULT 0,
+  `image_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `rooms`
+--
+
+INSERT INTO `rooms` (`room_id`, `room_type`, `price`, `amenities`, `available`, `image_path`) VALUES
+(1, 'Single', 100.00, 'Wi-Fi, TV', 0, 'C:UsersuserDesktop1.png');
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `reservation`
+-- Index pour la table `reservations`
 --
-ALTER TABLE `reservation`
+ALTER TABLE `reservations`
   ADD PRIMARY KEY (`reservation_id`),
   ADD KEY `room_id` (`room_id`);
 
 --
--- Index pour la table `room`
+-- Index pour la table `rooms`
 --
-ALTER TABLE `room`
+ALTER TABLE `rooms`
   ADD PRIMARY KEY (`room_id`);
 
 --
@@ -71,26 +112,26 @@ ALTER TABLE `room`
 --
 
 --
--- AUTO_INCREMENT pour la table `reservation`
+-- AUTO_INCREMENT pour la table `reservations`
 --
-ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `reservations`
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT pour la table `room`
+-- AUTO_INCREMENT pour la table `rooms`
 --
-ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `rooms`
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `reservation`
+-- Contraintes pour la table `reservations`
 --
-ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`);
+ALTER TABLE `reservations`
+  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
