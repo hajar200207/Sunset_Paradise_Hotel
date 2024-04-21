@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+ 
+
+    <style> 
+        
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,latin-ext,vietnamese');
+
+body{
+
+
+	background: #1f2029;
+	font-family: 'Poppins', sans-serif;
+}
+
+ .footer{
+   
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(238, 234, 234);
+    height: 200px;
+}
+h1{
+color:white;
+  display: flex;
+    align-items: center;
+        justify-content: center;
+}
+.cursor,
+.cursor2,
+.cursor3{
+	position: fixed;
+	border-radius: 50%;	
+	transform: translateX(-50%) translateY(-50%);
+	pointer-events: none;
+	left: -100px;
+	top: 50%;
+	mix-blend-mode: difference;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear; 
+}
+.cursor{
+	background-color: #fff;
+	height: 0;
+	width: 0;
+	z-index: 99999;
+}
+.cursor2,.cursor3{
+	height: 36px;
+	width: 36px;
+	z-index:99998;
+	-webkit-transition:all 0.3s ease-out;
+	transition:all 0.3s ease-out
+}
+.cursor2.hover,
+.cursor3.hover{
+	-webkit-transform:scale(2) translateX(-25%) translateY(-25%);
+	transform:scale(2) translateX(-25%) translateY(-25%);
+	border:none
+}
+.cursor2{
+	border: 2px solid #fff;
+	box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+.cursor2.hover{
+	background: rgba(255,255,255,1);
+	box-shadow: 0 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.section{
+	position: relative;
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	height: 100vh;
+}
+ .shadow-title{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	text-align: right;
+	font-size: 20px;
+	line-height: 1;
+	color: #ccc;
+	font-weight: 700;
+   letter-spacing: 1px;
+	z-index: 2;
+  opacity: 0.5;
+}
+
+.moving-image {
+	background: url('https://images.trvl-media.com/lodging/31000000/30040000/30039200/30039177/817f74b7.jpg?impolicy=resizecrop&rw=1200&ra=fit') repeat fixed;
+	background-size: cover;
+	position: absolute;
+	top: 0; 
+	left: 0; 
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	width:100%;
+	opacity: 0.4;
+}
+.case-study-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	z-index: 10;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	list-style: none;
+}
+.case-study-wrapper .case-study-name {
+	margin: 0;
+	padding: 0;
+}
+.case-study-wrapper .case-study-name a {
+	position: relative;
+	list-style: none;
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	padding: 0;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: 1px;
+	color: rgba(255,255,255,.3);
+	text-decoration: none;
+	-webkit-writing-mode: vertical-lr;
+	writing-mode: vertical-lr;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear; 
+	text-decoration: none;
+}	
+.case-study-wrapper .case-study-name a:hover {
+	text-decoration: none;
+}	
+.case-study-wrapper .case-study-name.active a {
+	color: #fff;
+}
+.case-study-wrapper .case-study-name a:before {
+	position: absolute;
+	content: '';
+	left: -5px;
+	top: 50%;
+	height: 0;
+	width: 4px;
+	transform: translateY(-50%);
+	background: linear-gradient(45deg, #f19872, #e86c9a);
+	-webkit-transition: all 200ms linear;
+	transition: all 200ms linear; 
+}	
+.case-study-wrapper .case-study-name:nth-child(2) a:before {
+	background: linear-gradient(45deg, #0947db, #07d89d);
+}
+.case-study-wrapper .case-study-name:nth-child(3) a:before {
+	background: linear-gradient(45deg, #ee2d29, #f8ae2c);
+}
+.case-study-wrapper .case-study-name:nth-child(4) a:before {
+	background: linear-gradient(45deg, #3a3d98, #6f22b9);
+}
+.case-study-wrapper .case-study-name.active a:before {
+	height: 100%;
+}
+
+.case-study-images {
+	position: absolute;
+	top: 50%;
+	left: 70px;
+	width: calc(100% - 90px);
+	max-width: 500px;
+	margin:0;
+	padding: 0;
+	z-index:5;
+	list-style: none;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}	
+.case-study-images li {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	margin:0;
+	padding: 0;
+	list-style: none;
+	opacity: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 30px rgba(14,14,14,.35);
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear; 
+}
+.case-study-images li.show {
+	opacity: 1;
+} 
+.case-study-images li img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+.case-study-images li p {
+	position: absolute;
+	top: 20px;
+	left: 20px; 
+	text-align: left;
+	font-size: 13px;
+	line-height: 1;
+	letter-spacing: 1px;
+	color: #fff;
+	font-weight: 300;
+	margin: 0;
+	padding: 5px 10px;
+	background-color: rgba(0,0,0,.8);
+	border-radius: 3px;
+	display: inline-block;
+}
+.case-study-images li .info {
+	position: relative; 
+	padding: 12px 20px;
+	background-color: rgba(0,0,0,.5);
+	display: block;
+}
+.case-study-images li .info img {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.case-study-images li .info a {
+	background-color: #000;
+	font-size: 11px;
+	text-transform: uppercase;
+	line-height: 28px;
+	letter-spacing: 2px;
+	color: #fff;
+	font-weight: 300;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	height: 28px;
+	padding: 0 20px;
+	border-radius: 3px;
+	-webkit-transition: all 300ms linear;
+	transition: all 300ms linear; 
+}
+.case-study-images li .info a:hover {
+	text-decoration: none;
+}
+
+
+.link-to-portfolio {
+	position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 3px;
+    background-position: center center;
+    background-size: cover;
+    background-image: url('https://ivang-design.com/ig-logo.jpg');
+    box-shadow: 0 0 0 2px rgba(255,255,255,.3);
+    transition: opacity .2s, border-radius .2s, box-shadow .2s;
+    transition-timing-function: ease-out;
+}
+.link-to-portfolio:hover {
+    opacity: 0.8;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0);
+}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+   <div class="logo">
+			<img src="logo1.png" alt="Company Logo" width="100px">
+		
+		</div>
+    <a class="navbar-brand" href="">Hotel Hajar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="RoomServlet">chambres</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ReservationServlet">Reservations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add_reservation.jsp">Ajouter Reservation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="search_results.jsp">Search chambre reservation</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <br>
+     <br>
+      <br>
+       <br>
+        <br>
+       
+        
+ 		<div class="section">
+			<div class="moving-image"></div>
+			<div class="shadow-title">hotel hajar</div>
+			<ul class="case-study-wrapper">
+				<li class="case-study-name">                            	
+					<a href="#" class="hover-target">double</a>
+				</li>
+				<li class="case-study-name">                                         	
+					<a href="#" class="hover-target">single</a>
+				</li>
+				<li class="case-study-name">                                        	
+					<a href="#" class="hover-target">suite</a>
+				</li>
+				<li class="case-study-name">                                         	
+					<a href="#" class="hover-target">Chambre avec vue</a>
+				</li>
+			</ul>
+
+			<ul class="case-study-images">
+				<li>
+					<img src="https://ivang-design.com/svg-load/hotel/room1.jpg" alt="">          	
+					<p>double</p>
+					<div class="info">
+						<img src="https://ivang-design.com/svg-load/hotel/1.svg" alt=""> 	
+						<img src="https://ivang-design.com/svg-load/hotel/2.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/3.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/5.svg" alt=""> 
+						
+					</div>
+				</li>
+				<li>
+					<img src="https://ivang-design.com/svg-load/hotel/room2.jpg" alt="">       	
+					<p>single</p>
+					<div class="info">
+						<img src="https://ivang-design.com/svg-load/hotel/1.svg" alt=""> 	
+						<img src="https://ivang-design.com/svg-load/hotel/2.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/3.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/4.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/6.svg" alt=""> 
+						
+					</div>
+				</li>
+				<li>
+					<img src="https://ivang-design.com/svg-load/hotel/room3.jpg" alt="">       	
+					<p>suite</p>
+					<div class="info">	
+						<img src="https://ivang-design.com/svg-load/hotel/2.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/3.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/4.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/5.svg" alt=""> 
+						
+					</div>
+				</li>
+				<li>
+					<img src="https://ivang-design.com/svg-load/hotel/room4.jpg" alt="">       	
+					<p>Chambre avec vue</p>
+					<div class="info">
+						<img src="https://ivang-design.com/svg-load/hotel/1.svg" alt=""> 	
+						<img src="https://ivang-design.com/svg-load/hotel/2.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/3.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/4.svg" alt=""> 
+						<img src="https://ivang-design.com/svg-load/hotel/6.svg" alt=""> 
+						
+					</div>
+				</li>
+			</ul>				
+		</div>
+       <div class="w3-container w3-padding-64" id="contact">
+       <br>
+  <h1>Contact</h1><br>
+  
+    <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
+    <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>
+    <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+    <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
+    <p><button class="w3-button w3-light-grey w3-section" type="submit">SEND MESSAGE</button></p>
+</div>
+        <div class='cursor2' id="cursor2"></div>
+        <div class='cursor3' id="cursor3"></div> 
+  
+
+
+<!-- End page content -->
+</div> 
+       <footer class="footer">
+        <img src="logo1.png"" width="100px" >
+          <div class="social-icons">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </div>
+         
+          <p>&copy; 2024 our web site hotel hajar</p>
+      </div>
+         
+    </footer> 
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+ <script>
+    
+
+/* Please ❤ this if you like it! */
+
+
+(function($) { "use strict";
+		
+//Page cursors
+
+document.getElementsByTagName("body")[0].addEventListener("mousemove", function(n) {
+    t.style.left = n.clientX + "px", 
+    t.style.top = n.clientY + "px", 
+    e.style.left = n.clientX + "px", 
+    e.style.top = n.clientY + "px", 
+    i.style.left = n.clientX + "px", 
+    i.style.top = n.clientY + "px"
+});
+var t = document.getElementById("cursor"),
+    e = document.getElementById("cursor2"),
+    i = document.getElementById("cursor3");
+function n(t) {
+    e.classList.add("hover"), i.classList.add("hover")
+}
+function s(t) {
+    e.classList.remove("hover"), i.classList.remove("hover")
+}
+s();
+for (var r = document.querySelectorAll(".hover-target"), a = r.length - 1; a >= 0; a--) {
+    o(r[a])
+}
+function o(t) {
+    t.addEventListener("mouseover", n), t.addEventListener("mouseout", s)
+}
+
+var pos = 0;
+        window.setInterval(function(){
+            pos++;
+            document.getElementsByClassName('moving-image')[0].style.backgroundPosition = pos + "px 0px";
+        }, 18
+    );
+
+$(document).ready(function() {			
+    
+    $('.case-study-name:nth-child(1)').on('mouseenter', function() {
+        $('.case-study-name.active').removeClass('active');
+        $('.case-study-images li.show').removeClass("show");
+        $('.case-study-images li:nth-child(1)').addClass("show");
+        $('.case-study-name:nth-child(1)').addClass('active');
+    })
+    $('.case-study-name:nth-child(2)').on('mouseenter', function() {
+        $('.case-study-name.active').removeClass('active');
+        $('.case-study-images li.show').removeClass("show");
+        $('.case-study-images li:nth-child(2)').addClass("show");
+        $('.case-study-name:nth-child(2)').addClass('active');
+    })
+    $('.case-study-name:nth-child(3)').on('mouseenter', function() {
+        $('.case-study-name.active').removeClass('active');
+        $('.case-study-images li.show').removeClass("show");
+        $('.case-study-images li:nth-child(3)').addClass("show");
+        $('.case-study-name:nth-child(3)').addClass('active');
+    })
+    $('.case-study-name:nth-child(4)').on('mouseenter', function() {
+        $('.case-study-name.active').removeClass('active');
+        $('.case-study-images li.show').removeClass("show");
+        $('.case-study-images li:nth-child(4)').addClass("show");
+        $('.case-study-name:nth-child(4)').addClass('active');
+    })
+    $('.case-study-name:nth-child(1)').trigger('mouseenter')
+                
+});
+
+
+
+})(jQuery); 
+ </script>
+</body>
+</html>
