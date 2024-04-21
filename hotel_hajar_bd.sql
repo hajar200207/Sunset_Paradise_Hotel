@@ -88,15 +88,15 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`room_id`, `room_type`, `price`, `amenities`, `available`, `image`) VALUES
-(1, 'Single', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/1773862b.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(1, 'Single', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/1773862b.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
 (4, 'double', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/cdeaf315.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
 (5, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/ec9e3f9d.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(6, 'double', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/ec9e3f9d.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(7, 'suite', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/5b407c8b.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(8, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/4fd32264.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(9, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/8a7b8b41.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(10, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/eb9fe8f2.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
-(11, 'suite', 120.00, 'Wi-Fi, TV', 0, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/310ac6aa.jpg?impolicy=resizecrop&rw=1200&ra=fit');
+(6, 'double', 100.00, 'Wi-Fi, TV', 1,'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/5b407c8b.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(7, 'suite', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/5b407c8b.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(8, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/4fd32264.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(9, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/8a7b8b41.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(10, 'Chambre avec vue', 100.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/1000000/20000/18100/18006/eb9fe8f2.jpg?impolicy=resizecrop&rw=1200&ra=fit'),
+(11, 'suite', 120.00, 'Wi-Fi, TV', 1, 'https://images.trvl-media.com/lodging/18000000/17800000/17793500/17793410/310ac6aa.jpg?impolicy=resizecrop&rw=1200&ra=fit');
 
 --
 -- Index pour les tables déchargées
