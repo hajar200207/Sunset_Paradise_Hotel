@@ -51,7 +51,7 @@ color:white;
 			<img src="logo1.png" alt="Company Logo" width="100px">
 		
 		</div>
-    <a class="navbar-brand" href="http://localhost:8080/projet_jee_gestionhotel/">Hotel Management</a>
+    <a class="navbar-brand" href="index.html">Hotel Management</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

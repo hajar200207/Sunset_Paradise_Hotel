@@ -3,6 +3,8 @@
 	<name>projet_jee_gestionhotel</name>
 	<comment></comment>
 	<projects>
+		<project>mysql-connector-j-8.3.0</project>
+		<project>jstl-1.2</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
